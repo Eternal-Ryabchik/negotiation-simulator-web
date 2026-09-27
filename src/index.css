@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ==== hero tokens (перенесены 1-в-1 из выбранного варианта) ==== */
+    --hero-bg: #eceef1;
+    --hero-surface: #ffffff;
+    --hero-text: #14181f;
+    --hero-muted: #454c58;
+    --hero-accent: #14181f;
+    --hero-accent-contrast: #ffffff;
+    --hero-size-head: 50.4px;
+    --hero-size-body: 22.1px;
+    --hero-radius: 6px;
+
+    --hero-x-lime: #e6e9ee;
+    --hero-x-lime-ink: #14181f;
+    --hero-x-navbar: #f7f8fa;
+    --hero-x-line: #dfe3e8;
+    --hero-x-blue: #7e8b9e;
+    --hero-x-blue-deep: #3e4a5c;
+    --hero-x-teal: #aeb8c6;
+    --hero-x-lime-plane: #d5dbe3;
+    --hero-x-panel: #171b22;
+    --hero-x-panel-text: #cbd1da;
+    --hero-x-panel-num: #868f9c;
+    --hero-x-stage-1: #f6f7f9;
+    --hero-x-stage-2: #d6dae0;
+    --hero-x-code-blue: #a9b6c8;
+    --hero-x-code-lime: #e4e9f0;
+    --hero-x-field: #f3f5f7;
+    --hero-x-shadow: rgba(20, 24, 31, 0.16);
+
+    /* ==== shadcn tokens ==== */
+    --background: 220 15% 94%;
+    --foreground: 218 22% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 218 22% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 22% 10%;
+
+    --primary: 218 22% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 97%;
+    --secondary-foreground: 218 22% 10%;
+
+    --muted: 210 17% 96%;
+    --muted-foreground: 218 12% 31%;
+
+    --accent: 217 16% 89%;
+    --accent-foreground: 218 22% 10%;
+
+    --destructive: 6 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 16% 89%;
+    --input: 217 16% 89%;
+    --ring: 216 19% 30%;
+
+    --radius: 0.375rem;
+
+    /* показатели переговоров */
+    --argument: 232 46% 47%;
+    --argument-soft: 232 46% 95%;
+    --trust: 154 44% 34%;
+    --trust-soft: 154 40% 94%;
+    --tension: 26 82% 48%;
+    --tension-soft: 26 82% 95%;
+    --steel: 216 14% 56%;
+    --panel: 218 19% 11%;
+    --panel-foreground: 216 17% 83%;
+
+    --sidebar-background: 220 14% 97%;
+    --sidebar-foreground: 218 12% 31%;
+    --sidebar-primary: 218 22% 10%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 16% 89%;
+    --sidebar-accent-foreground: 218 22% 10%;
+    --sidebar-border: 217 16% 89%;
+    --sidebar-ring: 216 19% 30%;
+  }
+
+  .dark {
+    --background: 218 19% 11%;
+    --foreground: 216 17% 90%;
+
+    --card: 218 20% 14%;
+    --card-foreground: 216 17% 90%;
+
+    --popover: 218 20% 14%;
+    --popover-foreground: 216 17% 90%;
+
+    --primary: 216 17% 90%;
+    --primary-foreground: 218 22% 10%;
+
+    --secondary: 218 16% 20%;
+    --secondary-foreground: 216 17% 90%;
+
+    --muted: 218 16% 20%;
+    --muted-foreground: 215 12% 65%;
+
+    --accent: 218 16% 24%;
+    --accent-foreground: 216 17% 90%;
+
+    --destructive: 6 55% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 218 16% 24%;
+    --input: 218 16% 24%;
+    --ring: 216 14% 56%;
+
+    --argument: 232 55% 70%;
+    --argument-soft: 232 25% 22%;
+    --trust: 154 40% 55%;
+    --trust-soft: 154 25% 20%;
+    --tension: 26 80% 62%;
+    --tension-soft: 26 35% 22%;
+    --steel: 216 14% 56%;
+    --panel: 218 22% 8%;
+    --panel-foreground: 216 17% 83%;
+
+    --sidebar-background: 218 22% 8%;
+    --sidebar-foreground: 216 17% 83%;
+    --sidebar-primary: 216 17% 90%;
+    --sidebar-primary-foreground: 218 22% 10%;
+    --sidebar-accent: 218 16% 20%;
+    --sidebar-accent-foreground: 216 17% 90%;
+    --sidebar-border: 218 16% 24%;
+    --sidebar-ring: 216 14% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+}
+
+@layer components {
+  /* ---- hero: перенос из исходного HTML ---- */
+  .hero-root {
+    font-size: var(--hero-size-body);
+  }
+
+  .hero-h1 {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: var(--hero-size-head);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+  }
+
+  .hero-stage {
+    background: linear-gradient(
+      160deg,
+      var(--hero-x-stage-1) 0%,
+      var(--hero-bg) 45%,
+      var(--hero-x-stage-2) 100%
+    );
+  }
+
+  .hero-plane {
+    position: absolute;
+    transform: skewX(-24deg);
+    pointer-events: none;
+  }
+
+  .hero-btn {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--hero-radius);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  .hero-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero-btn:active {
+    transform: translateY(0);
+  }
+
+  .metric-track {
+    height: 6px;
+    border-radius: 999px;
+    background: hsl(var(--accent));
+    overflow: hidden;
+  }
+
+  .metric-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .card-pick {
+    @apply rounded-xl border bg-card text-left transition-all duration-200;
+  }
+
+  .card-pick:hover {
+    box-shadow: 0 10px 28px var(--hero-x-shadow);
+    transform: translateY(-2px);
+  }
+
+  .card-pick[data-active="true"] {
+    @apply border-foreground;
+    box-shadow: 0 0 0 3px hsl(var(--foreground) / 0.12);
+  }
+}
+
+@layer utilities {
+  .rise {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
