@@ -11,7 +11,10 @@ copyFileSync("dist/index.html", "dist/404.html"); // SPA-фолбэк
 writeFileSync("dist/.nojekyll", "");
 
 const git = (cmd) => run(`git ${cmd}`, { cwd: "dist" });
+const cfg = (key) => execSync(`git config ${key}`).toString().trim();
 git("init -q -b gh-pages");
+git(`config user.name "${cfg("user.name")}"`);
+git(`config user.email "${cfg("user.email")}"`);
 git("add -A");
 git('commit -q -m "Deploy to GitHub Pages"');
 git(`push -f ${remote} gh-pages`);
