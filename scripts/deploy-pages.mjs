@@ -18,4 +18,6 @@ git(`config user.name "${cfg("user.name")}"`);
 git(`config user.email "${cfg("user.email")}"`);
 git("add -A");
 git('commit -q -m "Deploy to GitHub Pages"');
-git(`push -f ${remote} gh-pages`);
+// Пушим из основного репозитория, чтобы работали его настройки (SSH-ключ и т.п.)
+run("git fetch -q dist gh-pages");
+run("git push -f origin FETCH_HEAD:refs/heads/gh-pages");
