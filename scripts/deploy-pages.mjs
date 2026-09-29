@@ -1,6 +1,6 @@
 // Сборка под GitHub Pages и публикация dist/ в ветку gh-pages
 import { execSync } from "node:child_process";
-import { copyFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, rmSync, writeFileSync } from "node:fs";
 
 const run = (cmd, opts = {}) => execSync(cmd, { stdio: "inherit", ...opts });
 const remote = execSync("git remote get-url origin").toString().trim();
@@ -12,6 +12,7 @@ writeFileSync("dist/.nojekyll", "");
 
 const git = (cmd) => run(`git ${cmd}`, { cwd: "dist" });
 const cfg = (key) => execSync(`git config ${key}`).toString().trim();
+rmSync("dist/.git", { recursive: true, force: true });
 git("init -q -b gh-pages");
 git(`config user.name "${cfg("user.name")}"`);
 git(`config user.email "${cfg("user.email")}"`);
