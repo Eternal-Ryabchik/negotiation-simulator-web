@@ -1,0 +1,17 @@
+// Сборка под GitHub Pages и публикация dist/ в ветку gh-pages
+import { execSync } from "node:child_process";
+import { copyFileSync, writeFileSync } from "node:fs";
+
+const run = (cmd, opts = {}) => execSync(cmd, { stdio: "inherit", ...opts });
+const remote = execSync("git remote get-url origin").toString().trim();
+const repo = remote.split("/").pop().replace(/\.git$/, "");
+
+run("npm run build", { env: { ...process.env, BASE_PATH: `/${repo}/` } });
+copyFileSync("dist/index.html", "dist/404.html"); // SPA-фолбэк
+writeFileSync("dist/.nojekyll", "");
+
+const git = (cmd) => run(`git ${cmd}`, { cwd: "dist" });
+git("init -q -b gh-pages");
+git("add -A");
+git('commit -q -m "Deploy to GitHub Pages"');
+git(`push -f ${remote} gh-pages`);
