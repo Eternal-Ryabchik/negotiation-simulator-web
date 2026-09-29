@@ -24,6 +24,8 @@ const hmrKeepalive = {
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => ({
+    // Для GitHub Pages сайт живёт в подпапке /<repo>/
+    base: process.env.BASE_PATH ?? "/",
     plugins: [
         react(),
         hmrKeepalive,

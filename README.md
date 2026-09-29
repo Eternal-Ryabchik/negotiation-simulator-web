@@ -4,6 +4,8 @@
 
 Решение для кейса «Арена переговоров» (ОЭЗ ППТ «Алабуга») хакатона «Лидеры цифровой трансформации 2026».
 
+**Демо:** https://eternal-ryabchik.github.io/negotiation-simulator-web/ · **Презентация:** [docs/presentation.pdf](docs/presentation.pdf)
+
 ---
 
 ## Содержание
